@@ -3,8 +3,8 @@
 %bcond_with	tests	# perform "make test" (requires database connection)
 #
 %include	/usr/lib/rpm/macros.perl
-%define	pdir	DBD
-%define	pnam	PgPP
+%define		pdir	DBD
+%define		pnam	PgPP
 Summary:	Pure Perl PostgresSQL driver for DBI
 Summary(pl):	Czysto perlowy sterownik do PostgresSQL-a dla DBI
 Name:		perl-DBD-PgPP
