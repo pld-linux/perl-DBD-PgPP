@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without	tests	# Do not perform "make test"
 #
@@ -34,8 +35,6 @@ BuildRequires:	perl-devel >= 5.6
 BuildRequires:	postgresql-devel
 BuildRequires:	rpm-perlprov >= 4.0.2-104
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-#define		_noautoreq 'perl(POSIX(qw(isprint)))'
 
 %description
 DBD::PgPP - PostgreSQL database driver for the DBI module.
@@ -99,7 +98,7 @@ Perl.
 %build
 POSTGRES_LIB="%{_libdir}"; export POSTGRES_LIB
 POSTGRES_INCLUDE="%{_includedir}/postgresql"; export POSTGRES_INCLUDE
-%{__perl} Makefile.PL 
+%{__perl} Makefile.PL
 %{__make} \
 	OPTIMIZE="%{rpmcflags}"
 
