@@ -1,27 +1,12 @@
 #
 # Conditional build:
-%bcond_without	tests	# Do not perform "make test"
+%bcond_with	tests	# perform "make test" (requires database connection)
 #
 %include	/usr/lib/rpm/macros.perl
 %define	pdir	DBD
 %define	pnam	PgPP
-Summary:	A PostgresSQL interface for Perl
-Summary(cs):	PostgresSQL rozhraní pro Perl
-Summary(da):	Et PostgreSQL-grænseflade for Perl
-Summary(de):	Ein PostgreSQL-Interface für Perl
-Summary(es):	Interfaz PostgresSQL para Perl
-Summary(fr):	Interface PostgresSQL pour Perl
-Summary(it):	Interfaccia PostgreSQL per Perl
-Summary(ja):	Perl ¤Î PostgreSQL ¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹
-Summary(ko):	ÆÞÀ» À§ÇÑ PostgresSQL ÀÎÅÍÆäÀÌ½º
-Summary(nb):	Et PostgreSQL-grensesnitt for Perl
-Summary(pl):	Perlowy interfejs do PostgresSQLa
-Summary(pt):	Uma interface de Perl para o PostgresSQL
-Summary(pt_BR):	Uma interface de Perl para o PostgresSQL
-Summary(ru):	éÎÔÅÒÆÅÊÓ PostgresSQL ÄÌÑ Perl
-Summary(sv):	Ett gränssnitt till PostgresSQL för Perl
-Summary(uk):	Perl-¦ÎÔÅÒÆÅÊÓ ÄÏ PostgresSQL
-Summary(zh_CN):	Perl µÄ PostgresSQL ½çÃæ¡£
+Summary:	Pure Perl PostgresSQL driver for DBI
+Summary(pl):	Czysto perlowy sterownik do PostgresSQL-a dla DBI
 Name:		perl-DBD-PgPP
 Version:	0.05
 Release:	1
@@ -31,76 +16,33 @@ Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	159d54a21eda08ab93fd44f2791cf56f
 BuildRequires:	perl-DBI
-BuildRequires:	perl-devel >= 5.6
-BuildRequires:	postgresql-devel
-BuildRequires:	rpm-perlprov >= 4.0.2-104
+BuildRequires:	perl-devel >= 1:5.8.0
+BuildRequires:	rpm-perlprov >= 4.1-13
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-DBD::PgPP - PostgreSQL database driver for the DBI module.
-
-%description -l cs
-Implementace DBI pro PostgreSQL do Perlu.
-
-%description -l da
-Denne pakke indeholder en implementation af DBI for PostgreSQL for
-Perl.
-
-%description -l de
-Dieses Paket enthält eine Implementierung von PostgreSQL für Perl.
-
-%description -l es
-Este paquete contiene una implementación de DBI para PotgreSQL para
-PERL.
-
-%description -l fr
-Ce paquetage contient une mise en oeuvre de DBI pour PostgreSQL pour
-Perl.
-
-%description -l it
-Questo pacchetto contiene un'implementazione di DBI per PostgreSQL per
-Perl.
-
-%description -l ja
-¤³¤Î¥Ñ¥Ã¥±¡¼¥¸¤Ë¤Ï Perl ¤Î PostgreSQL ÍÑ DBI ¼ÂÁõ¤¬¼ýÏ¿¤µ¤ì¤Æ¤¤¤Þ¤¹¡£
-
-%description -l ko
-ÀÌ ÆÐÅ°Áö´Â ÆÞÀ» À§ÇÑ PostgreSQLÀÇ DBI ½ÇÇöÀ» Æ÷ÇÔÇÏ°í ÀÖ½À´Ï´Ù.
-
-%description -l nb
-Denne pakken inneholder en implementasjon av DBI for PostgreSQL for
-Perl.
+DBD::PgPP is a Pure Perl client interface for the PostgreSQL database.
+This module implements the PostgreSQL client/server network protocol,
+so you don't need an external PostgreSQL client library like "libpq"
+for it to work. That means you can connect to a PostgreSQL server from
+operating systems to which PostgreSQL has not been ported.
 
 %description -l pl
-DBD::PgPP - Sterownik bazy danych PostgreSQL dla modu³u DBI.
-
-%description -l pt
-Este pacote contém uma implementação de DBI para o PostgreSQL para o
-Perl.
-
-%description -l pt_BR
-Este pacote contém uma implementação de DBI para o PostgreSQL para o
-Perl.
-
-%description -l ru
-üÔÏ ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÒÅÁÌÉÚÁÃÉÀ DBI ÄÌÑ PostgreSQL ÄÌÑ Perl.
-
-%description -l sv
-Detta paket innehåller en implementation av DBI för PostgreSQL för
-Perl.
-
-%description -l zh_CN
-¸ÃÈí¼þ°ü°üÀ¨ÓÃÓÚ Perl µÄ PostgreSQL µÄ DBI ÊµÏÖ¡£
+DBD::PgPP to czysto perlowy interfejs kliencki do bazy danych
+PostgreSQL. Ten modu³ implementuje protokó³ sieciowy klient-serwer
+PostgreSQL-a, wiêc nie wymaga do dzia³ania zewnêtrznej biblioteki
+klienckiej typu libpq. Oznacza to, ¿e mo¿na siê ³±czyæ z serwerem
+PostgreSQL z systemów operacyjnych, na które PostgreSQL nie zosta³
+sportowany.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
 %build
-POSTGRES_LIB="%{_libdir}"; export POSTGRES_LIB
-POSTGRES_INCLUDE="%{_includedir}/postgresql"; export POSTGRES_INCLUDE
-%{__perl} Makefile.PL
-%{__make} \
-	OPTIMIZE="%{rpmcflags}"
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor
+%{__make}
 
 # Needed to be set for tests:
 #PG_TEST_DB=<database>
@@ -121,6 +63,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
-%{perl_sitelib}/%{pdir}/*
-%dir %{perl_sitearch}/auto/DBD/PgPP
+%{perl_vendorlib}/DBD/PgPP.pm
+%lang(ja) %{perl_vendorlib}/DBD/DBD-PgPP.ja.pod
 %{_mandir}/man[13]/*
