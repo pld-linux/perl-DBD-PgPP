@@ -6,7 +6,7 @@
 %define		pdir	DBD
 %define		pnam	PgPP
 Summary:	Pure Perl PostgresSQL driver for DBI
-Summary(pl):	Czysto perlowy sterownik do PostgresSQL-a dla DBI
+Summary(pl.UTF-8):   Czysto perlowy sterownik do PostgresSQL-a dla DBI
 Name:		perl-DBD-PgPP
 Version:	0.05
 Release:	1
@@ -28,12 +28,12 @@ so you don't need an external PostgreSQL client library like "libpq"
 for it to work. That means you can connect to a PostgreSQL server from
 operating systems to which PostgreSQL has not been ported.
 
-%description -l pl
+%description -l pl.UTF-8
 DBD::PgPP to czysto perlowy interfejs kliencki do bazy danych
-PostgreSQL. Ten modu³ implementuje protokó³ sieciowy klient-serwer
-PostgreSQL-a, wiêc nie wymaga do dzia³ania zewnêtrznej biblioteki
-klienckiej typu libpq. Oznacza to, ¿e mo¿na siê ³±czyæ z serwerem
-PostgreSQL z systemów operacyjnych, na które PostgreSQL nie zosta³
+PostgreSQL. Ten moduÅ‚ implementuje protokÃ³Å‚ sieciowy klient-serwer
+PostgreSQL-a, wiÄ™c nie wymaga do dziaÅ‚ania zewnÄ™trznej biblioteki
+klienckiej typu libpq. Oznacza to, Å¼e moÅ¼na siÄ™ Å‚Ä…czyÄ‡ z serwerem
+PostgreSQL z systemÃ³w operacyjnych, na ktÃ³re PostgreSQL nie zostaÅ‚
 sportowany.
 
 %prep
