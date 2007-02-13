@@ -6,7 +6,7 @@
 %define		pdir	DBD
 %define		pnam	PgPP
 Summary:	Pure Perl PostgresSQL driver for DBI
-Summary(pl.UTF-8):   Czysto perlowy sterownik do PostgresSQL-a dla DBI
+Summary(pl.UTF-8):	Czysto perlowy sterownik do PostgresSQL-a dla DBI
 Name:		perl-DBD-PgPP
 Version:	0.05
 Release:	1
