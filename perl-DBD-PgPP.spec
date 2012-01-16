@@ -8,13 +8,13 @@
 Summary:	Pure Perl PostgresSQL driver for DBI
 Summary(pl.UTF-8):	Czysto perlowy sterownik do PostgresSQL-a dla DBI
 Name:		perl-DBD-PgPP
-Version:	0.07
+Version:	0.08
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DBD/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	92eaca3735a58ffb96646056ab79c3cf
+# Source0-md5:	0993870ecda306a619a5a10825e7bd29
 URL:		http://search.cpan.org/dist/DBD-PgPP/
 BuildRequires:	perl-DBI
 BuildRequires:	perl-devel >= 1:5.8.0
