@@ -2,7 +2,6 @@
 # Conditional build:
 %bcond_with	tests	# perform "make test" (requires database connection)
 #
-%include	/usr/lib/rpm/macros.perl
 %define		pdir	DBD
 %define		pnam	PgPP
 Summary:	Pure Perl PostgresSQL driver for DBI
